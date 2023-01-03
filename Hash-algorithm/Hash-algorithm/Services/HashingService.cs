@@ -10,6 +10,11 @@ namespace Hash_algorithm.Services
 {
     public class HashingService
     {
-       
+        public string Hash(string input)
+        {
+            string hash = "";
+
+            return hash;
+        }
     }
 }
