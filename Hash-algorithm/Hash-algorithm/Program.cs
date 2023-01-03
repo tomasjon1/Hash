@@ -12,8 +12,8 @@ namespace Hash_algorithm
         {
             HashingService _hashingService = new HashingService();
 
-            Console.WriteLine(_hashingService.Hash("2222"));
-            Console.WriteLine(_hashingService.Hash("2222"));
+            Console.WriteLine(_hashingService.Hash("ABCD"));
+            Console.WriteLine(_hashingService.Hash("abcd"));
         }
     }
 }
