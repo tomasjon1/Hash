@@ -14,6 +14,7 @@ namespace Hash_algorithm
 
             Console.WriteLine(_hashingService.Hash("ABCD"));
             Console.WriteLine(_hashingService.Hash("abcd"));
+            Console.WriteLine(_hashingService.Hash("abcd"));
         }
     }
 }
