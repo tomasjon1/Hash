@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hash_algorithm.Services
 {
-    internal class HelperService
+    public class HelperService
     {
         public string RandomStringGenerator(int l)
         {

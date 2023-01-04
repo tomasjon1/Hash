@@ -19,6 +19,7 @@ namespace Hash_algorithm
 
             _testingService.OutputLenghtTest();
             _testingService.OutputEqualityTest();
+            _testingService.OutputCollisionTest();
         }
     }
 }
