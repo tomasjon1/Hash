@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hash_algorithm.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,26 @@ namespace Hash_algorithm.Services
                 }
             }
             Console.WriteLine("Every output was 256 bits");
+        }
+
+        public void OutputEqualityTest()
+        {
+            int matches = 0;
+
+            for (int i = 0; i < 100000; i++)
+            {
+                string s1 = i.ToString();
+                string s2 = i.ToString();
+
+                if(_hashingService.Hash(s1) == _hashingService.Hash(s2))
+                    matches++;
+                else
+                {
+                    Console.WriteLine($"The hashes of {i} ware not the same");
+                }
+            }
+
+            Console.WriteLine($"there ware {matches} matches out of 100000 cases");
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Hash_algorithm
             Console.WriteLine(_hashingService.Hash("abcd"));
 
             _testingService.OutputLenghtTest();
+            _testingService.OutputEqualityTest();
         }
     }
 }
