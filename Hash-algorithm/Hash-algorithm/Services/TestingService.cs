@@ -16,5 +16,13 @@ namespace Hash_algorithm.Services
         // collision test
         // avalanche test
         // speed test
+
+
+
+        private void OutputLenghtTest()
+        {
+            
+        }
+
     }
 }
