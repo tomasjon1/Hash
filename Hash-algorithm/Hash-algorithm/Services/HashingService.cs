@@ -30,7 +30,6 @@ namespace Hash_algorithm.Services
 
             char[] sumInChars = sum.ToString().ToCharArray();
 
-
             for (int i = 0; i < 64; i++)
             {
                 int hexCharIndex;
