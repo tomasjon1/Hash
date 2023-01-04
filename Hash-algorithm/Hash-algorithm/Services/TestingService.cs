@@ -6,23 +6,32 @@ using System.Threading.Tasks;
 
 namespace Hash_algorithm.Services
 {
-    internal class TestingService
+    public class TestingService
     {
 
         HashingService _hashingService = new HashingService();
 
-        // lenght test
+        // lenght test     
         // similarity test
         // collision test
         // avalanche test
         // speed test
 
-
-
-        private void OutputLenghtTest()
+        public void OutputLenghtTest()
         {
-            
-        }
+            for (int i = 1; i < 10000; i *= 10)
+            {
+                string output = _hashingService.Hash(i.ToString());
 
+                if (output.Length == 64)
+                    continue;
+                else
+                {
+                    Console.WriteLine("Output is not 256 bits");
+                    return;
+                }
+            }
+            Console.WriteLine("Every output was 256 bits");
+        }
     }
 }
