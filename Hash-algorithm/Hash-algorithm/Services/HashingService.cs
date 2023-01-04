@@ -22,6 +22,7 @@ namespace Hash_algorithm.Services
             {
                 UInt64 Cint64 = Convert.ToUInt32(c);
                 Cint64 = BitOperations.RotateLeft(Cint64, 98464629 * Convert.ToInt32(c));
+                Cint64 = Cint64 ^ c ^ prev;
 
                 sum += Cint64 - BitOperations.RotateRight((UInt64)prev, 4056840 * Convert.ToInt32(c));
                 sum = BitOperations.RotateLeft(sum, 5788480 * Convert.ToInt32(prev));
