@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Hash_algorithm.Services
@@ -11,6 +12,7 @@ namespace Hash_algorithm.Services
     {
 
         HashingService _hashingService = new HashingService();
+        HelperService _helperService = new HelperService();
 
         // lenght test     
         // similarity test
@@ -53,6 +55,17 @@ namespace Hash_algorithm.Services
             }
 
             Console.WriteLine($"there ware {matches} matches out of 100000 cases");
+        }
+
+        public void OutputCollisionTest()
+        {
+            int collisions = 0;
+
+            for (int i = 0; i < 100000; i++)
+            {
+               
+            }
+
         }
     }
 }
