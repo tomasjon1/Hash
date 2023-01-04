@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,17 +17,13 @@ namespace Hash_algorithm.Services
         HashingService _hashingService = new HashingService();
         HelperService _helperService = new HelperService();
 
-        // lenght test        2.  done - better error handeling
-        // similarity test    2.  done - better error handeling, limitation for random string lenght
-        // collision test     5.  done - limitation for random string lenght
-        // speed test         3.  done - need to add writing to files
-        // avalanche test     6.  done - need to make sure how it works
-
         public void OutputLenghtTest()
         {
-            for (int i = 1; i < 10000; i++)
+            Console.WriteLine("Starting lenght test");
+
+            for (int i = 1; i < 1000; i++)
             {
-                string output = _hashingService.Hash(i.ToString());
+                string output = _hashingService.Hash(_helperService.RandomStringGenerator(i));
 
                 if (output.Length == 64)
                     continue;
@@ -41,9 +38,11 @@ namespace Hash_algorithm.Services
 
         public void OutputEqualityTest()
         {
+            Console.WriteLine("Starting equality test");
+
             int matches = 0;
 
-            for (int i = 1; i <= 10000; i++)
+            for (int i = 1; i <= 1000; i++)
             {
                 string s = _helperService.RandomStringGenerator(i);
           
@@ -52,17 +51,30 @@ namespace Hash_algorithm.Services
                 else
                     Console.WriteLine($"The hashes of {i} ware not the same");
             }
-
-            Console.WriteLine($"there ware {matches} matches out of 100000 cases");
+            Console.WriteLine($"there ware {matches} matches out of 1000 cases");
         }
 
         public void OutputCollisionTest()
         {
+            Console.WriteLine("Starting collision test");
+
             int collisions = 0;
 
             for (int i = 1; i <= 100000; i++)
-                if (_hashingService.Hash(_helperService.RandomStringGenerator(i)) == _hashingService.Hash(_helperService.RandomStringGenerator(i)))
-                    collisions++;
+            {
+                if(i <= 25000)
+                    if (_hashingService.Hash(_helperService.RandomStringGenerator(10)) == _hashingService.Hash(_helperService.RandomStringGenerator(10)))
+                        collisions++;
+                else if(i <= 50000)
+                    if (_hashingService.Hash(_helperService.RandomStringGenerator(100)) == _hashingService.Hash(_helperService.RandomStringGenerator(100)))
+                        collisions++;
+                else if (i <= 75000)
+                    if (_hashingService.Hash(_helperService.RandomStringGenerator(500)) == _hashingService.Hash(_helperService.RandomStringGenerator(500)))
+                        collisions++;
+                else
+                    if (_hashingService.Hash(_helperService.RandomStringGenerator(1000)) == _hashingService.Hash(_helperService.RandomStringGenerator(1000)))
+                        collisions++;
+            }
 
             if (collisions == 0)
                 Console.WriteLine("No collisions");
@@ -72,13 +84,25 @@ namespace Hash_algorithm.Services
 
         public void OutputAvalancheTest()
         {
+            Console.WriteLine("Starting avalanche test");
+
             List<float> percentage = new List<float>();
 
             float min = 100, max = 0, avg = 0;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100000; i++)
             {
-                string s1 = _helperService.RandomStringGenerator(6);
+                string s1;
+
+                if (i <= 25000)
+                    s1 = _helperService.RandomStringGenerator(10);
+                else if (i <= 50000)
+                    s1 = _helperService.RandomStringGenerator(100);
+                else if (i <= 75000)
+                    s1 = _helperService.RandomStringGenerator(500);
+                else
+                    s1 = _helperService.RandomStringGenerator(1000);
+
                 string s2 = _helperService.RandomStringGenerator(1) + s1.Remove(0, 1);
 
                 percentage.Add(SimilarityCalculation(_hashingService.Hash(s1), _hashingService.Hash(s2)));
@@ -96,9 +120,9 @@ namespace Hash_algorithm.Services
 
             Console.WriteLine("Min HEX difference: {0:F2}%", min);
             Console.WriteLine("Max HEX difference: {0:F2}%", max);
-            Console.WriteLine("Avg HEX difference: {0:F2}%", avg);
+            Console.WriteLine("Avg HEX difference: {0:F2}%", avg/100000);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 string s1 = _helperService.RandomStringGenerator(6);
                 string s2 = _helperService.RandomStringGenerator(1) + s1.Remove(0, 1);
@@ -126,7 +150,7 @@ namespace Hash_algorithm.Services
 
             Console.WriteLine("Min binary difference: {0:F2}%", min);
             Console.WriteLine("Max binary difference: {0:F2}%", max);
-            Console.WriteLine("Avg binary difference: {0:F2}%", avg);
+            Console.WriteLine("Avg binary difference: {0:F2}%", avg/ 1000000);
         }
 
         public void SpeedTest()
@@ -134,7 +158,13 @@ namespace Hash_algorithm.Services
             List<string> lines = File.ReadAllLines("konstitucija.txt").ToList();
             List<Data> results = new List<Data>();
 
-            for(int l = 1; l < lines.Count; l++)
+            if (!Directory.Exists(AppContext.BaseDirectory + @"Results\"))
+                Directory.CreateDirectory(AppContext.BaseDirectory + @"Results\");
+
+            if (File.Exists(AppContext.BaseDirectory + @"Results\Results.txt"))
+                File.Delete(AppContext.BaseDirectory + @"Results\Results.txt");
+
+            for (int l = 1; l < lines.Count; l++)
             {
                 double lineCount = Math.Pow(l, 2);
 
@@ -148,8 +178,14 @@ namespace Hash_algorithm.Services
 
                 for (int y = 1; y <= lineCount; y++)
                     sb.Append(lines[y-1]);
-                results.Add(new Data() { Input = sb.ToString(), Output = _hashingService.Hash(sb.ToString()) });
+
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                results.Add(new Data() { Input = sb.ToString(), Output = _hashingService.Hash(sb.ToString()), Time = timer.Elapsed });
             }
+
+            foreach (Data r in results)
+                File.AppendAllText(AppContext.BaseDirectory + @"Results\Results.txt", String.Format("Input: {0}\n Output: {1}\n Time: {2} \n \n", r.Input, r.Output, r.Time));
         }
 
         private float SimilarityCalculation(string s1, string s2)
