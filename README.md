@@ -24,10 +24,10 @@ Per cmd eilute nusigaukite i C:Hash\Hash-algorithm\Hash-algorithm\bin\Debug\net5
  # Konstitucijos suhashinimas -  00:00:00.0100435ms
   
  # Hash'ų skirtingumo testų rezultatai: 
-    - Mažiausias skirtumas HEX lygmenyje: 46.88%
-    - Didžiausias skirtumas HEX lygmenyje: 96.88%
-    - Mažiausias skirtumas HEX lygmenyje: 81.17%
+    - Mažiausias skirtumas HEX lygmenyje:  39.06%
+    - Didžiausias skirtumas HEX lygmenyje: 100.00%
+    - Mažiausias skirtumas HEX lygmenyje: 83.02%
 
-    - Mažiausias skirtumas Binary lygmenyje: 12.89%
-    - Didžiausias skirtumas Binary lygmenyje: 45.31%
-    - Mažiausias skirtumas Binary lygmenyje: 29.73%
+    - Mažiausias skirtumas Binary lygmenyje: 0.00%
+    - Didžiausias skirtumas Binary lygmenyje: 100.00%
+    - Mažiausias skirtumas Binary lygmenyje:  11.32%
