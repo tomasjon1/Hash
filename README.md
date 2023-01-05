@@ -3,7 +3,7 @@
 VU block-chain pirma užduotis
 
 # Paleidimas
-Per cmd eilute nusigaukite i C:Hash\Hash-algorithm\Hash-algorithm\bin\Debug\net5.0 ir paleiskite komanda:
+Per cmd eilute nusigaukite i C:Hash\Hash-algorithm\Hash-algorithm\bin\Debug\net5.0 ir paleiskite komanda su 3 parametrais ir inputu/failo pavadinimu:
  - hash-algorithm -in | -inf -out | -outf <-t> <inputs | filenames>
 
     - -in - Skaitymas iš komandos eilutės
