@@ -21,7 +21,8 @@ Per cmd eilute nusigaukite i C:Hash\Hash-algorithm\Hash-algorithm\bin\Debug\net5
   - Funkcija yra deterministinė: tam pačiam input visada bus toks pat output
   - Funkcija atspari kolizijai: buvo atlikta 100000 testų su skirtingais input string'ais ir nebuvo aptikta jokių kolizijų
   
- # Konstitucijos suhashinimas -  00:00:00.0100435ms
+ # Konstitucijos suhashinimas 
+  -Apie : 00:00:00.0100435ms
   
  # Hash'ų skirtingumo testų rezultatai: 
     - Mažiausias skirtumas HEX lygmenyje:  39.06%
