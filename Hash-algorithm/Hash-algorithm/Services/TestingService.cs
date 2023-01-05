@@ -13,7 +13,6 @@ namespace Hash_algorithm.Services
 {
     public class TestingService
     {
-
         HashingService _hashingService = new HashingService();
         HelperService _helperService = new HelperService();
 
@@ -35,7 +34,6 @@ namespace Hash_algorithm.Services
             }
             Console.WriteLine("Every output was 256 bits");
         }
-
         public void OutputEqualityTest()
         {
             Console.WriteLine("Starting equality test");
@@ -53,7 +51,6 @@ namespace Hash_algorithm.Services
             }
             Console.WriteLine($"there ware {matches} matches out of 1000 cases");
         }
-
         public void OutputCollisionTest()
         {
             Console.WriteLine("Starting collision test");
@@ -81,7 +78,6 @@ namespace Hash_algorithm.Services
             else
                 Console.WriteLine($"{collisions} collisions happened");
         }
-
         public void OutputAvalancheTest()
         {
             Console.WriteLine("Starting avalanche test");
@@ -120,7 +116,7 @@ namespace Hash_algorithm.Services
 
             Console.WriteLine("Min HEX difference: {0:F2}%", min);
             Console.WriteLine("Max HEX difference: {0:F2}%", max);
-            Console.WriteLine("Avg HEX difference: {0:F2}%", avg/100000);
+            Console.WriteLine("Avg HEX difference: {0:F2}%", avg);
 
             for (int i = 0; i < 100000; i++)
             {
@@ -150,9 +146,8 @@ namespace Hash_algorithm.Services
 
             Console.WriteLine("Min binary difference: {0:F2}%", min);
             Console.WriteLine("Max binary difference: {0:F2}%", max);
-            Console.WriteLine("Avg binary difference: {0:F2}%", avg/ 1000000);
+            Console.WriteLine("Avg binary difference: {0:F2}%", avg);
         }
-
         public void SpeedTest()
         {
             List<string> lines = File.ReadAllLines("konstitucija.txt").ToList();
@@ -187,7 +182,6 @@ namespace Hash_algorithm.Services
             foreach (Data r in results)
                 File.AppendAllText(AppContext.BaseDirectory + @"Results\Results.txt", String.Format("Input: {0}\n Output: {1}\n Time: {2} \n \n", r.Input, r.Output, r.Time));
         }
-
         private float SimilarityCalculation(string s1, string s2)
         {
             if ((s1 == null) || (s2 == null)) return 0;
@@ -196,7 +190,6 @@ namespace Hash_algorithm.Services
             int similarity = LevenshteinDistance(s1, s2);
             return 100 - ((float)Math.Max(s1.Length, s2.Length) - (float)similarity) / (float)Math.Max(s1.Length, s2.Length) * 100;
         }
-
         private int LevenshteinDistance(string source1, string source2)
         {
             var source1Length = source1.Length;
