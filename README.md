@@ -28,8 +28,8 @@ Per cmd eilute nusigaukite i C:Hash\Hash-algorithm\Hash-algorithm\bin\Debug\net5
  # Hash'ų skirtingumo testų rezultatai: 
     - Mažiausias skirtumas HEX lygmenyje:  39.06%
     - Didžiausias skirtumas HEX lygmenyje: 100.00%
-    - Mažiausias skirtumas HEX lygmenyje: 83.02%
+    - Vidutinis skirtumas HEX lygmenyje: 83.02%
 
     - Mažiausias skirtumas Binary lygmenyje: 0.00%
     - Didžiausias skirtumas Binary lygmenyje: 100.00%
-    - Mažiausias skirtumas Binary lygmenyje:  11.32%
+    - Vidutinis skirtumas Binary lygmenyje:  11.32%
