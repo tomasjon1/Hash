@@ -11,6 +11,7 @@ Per cmd eilute nusigaukite i C:Hash\Hash-algorithm\Hash-algorithm\bin\Debug\net5
     - -out - Rezultatų išvedimas į komandinę eilutę
     - -outf - Rezultatų išvedimas į failą
     - -t - neprivalomas parametras, atlieka visus testus (output length, are hashes equal ,collision, similarity, speed tests)
+     - kad nepasirinkti testo uztenka irasyti tik "-"
     
 # Hashingo logika
   Pagrindine ideja yra naudojant XOR ir bit bit rotations, bei atsisiktinai paimtus skaicius daugybai, padaryti atsitiktini bitu eilute.
